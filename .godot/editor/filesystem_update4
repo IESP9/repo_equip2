@@ -1,1 +1,4 @@
 res://scenes/title.tscn
+res://scenes/warning.tscn
+res://scenes/room.tscn
+res://scripts/roompan.gd

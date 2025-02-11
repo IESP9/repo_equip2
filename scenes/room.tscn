@@ -1,0 +1,51 @@
+[gd_scene load_steps=5 format=3 uid="uid://s7rhruvx8sv3"]
+
+[ext_resource type="Texture2D" uid="uid://c35cq8hqu55br" path="res://textures/room/room.png" id="1_j50an"]
+[ext_resource type="Script" path="res://scripts/roompan.gd" id="1_jispr"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g2wpc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_j50an")
+}],
+"loop": true,
+"name": &"room",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r1t21"]
+size = Vector2(442, 685)
+
+[node name="Room" type="Node2D"]
+script = ExtResource("1_jispr")
+
+[node name="room" type="AnimatedSprite2D" parent="."]
+position = Vector2(718.889, 323.5)
+scale = Vector2(0.898611, 0.898611)
+sprite_frames = SubResource("SpriteFrames_g2wpc")
+animation = &"room"
+
+[node name="camera" type="Node2D" parent="."]
+
+[node name="viewcamera" type="Camera2D" parent="camera"]
+position = Vector2(576, 324)
+
+[node name="detectors" type="Node2D" parent="."]
+
+[node name="left" type="Area2D" parent="detectors"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detectors/left"]
+position = Vector2(221, 320)
+shape = SubResource("RectangleShape2D_r1t21")
+
+[node name="right" type="Area2D" parent="detectors"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detectors/right"]
+position = Vector2(1215, 319)
+shape = SubResource("RectangleShape2D_r1t21")
+
+[connection signal="mouse_entered" from="detectors/left" to="." method="_on_left_mouse_entered"]
+[connection signal="mouse_exited" from="detectors/left" to="." method="_on_left_mouse_exited"]
+[connection signal="mouse_entered" from="detectors/right" to="." method="_on_right_mouse_entered"]
+[connection signal="mouse_exited" from="detectors/right" to="." method="_on_right_mouse_exited"]
