@@ -1,10 +1,10 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1739205865
+::res://::1739295438
 icon.svg::CompressedTexture2D::1201866844645012393::1739204806::1739204901::1::::<><>::
 ::res://fnaf/::1739203587
-::res://scenes/::1739204806
-title.tscn::PackedScene::6397888624491099136::1739204806::0::1::::<><>::
+::res://scenes/::1739299035
+title.tscn::PackedScene::6397888624491099136::1739299035::0::1::::<><>::uid://8g3o112p2j58::::res://sprites/fondo.png
 warning.tscn::PackedScene::3043311219569414539::1739204806::0::1::::<><>::
-::res://sprites/::1739206307
+::res://sprites/::1739299218
 fondo.png::CompressedTexture2D::2330344590511449577::1738596132::1739206312::1::::<><>::
-menu_2naVersion.png::CompressedTexture2D::61952818901717004::1738691811::1739205906::1::::<><>::
+sombra.png::CompressedTexture2D::9206518826047396776::1739298987::1739299218::1::::<><>::
