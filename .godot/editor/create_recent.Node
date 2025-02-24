@@ -1,7 +1,13 @@
 CollisionShape2D
 Area2D
+AnimatedSprite2D
+Sprite2D
 Node2D
+ColorRect
+CanvasLayer
 Node
 Camera2D
-AnimatedSprite2D
-CanvasLayer
+Button
+Label
+TextureRect
+Camera2D

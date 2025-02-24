@@ -1,4 +1,5 @@
-res://scenes/title.tscn
-res://scenes/warning.tscn
 res://scenes/room.tscn
-res://scripts/roompan.gd
+res://scenes/door.tscn
+res://scripts/door.gd
+res://scenes/window.tscn
+res://scripts/doorkeys.gd

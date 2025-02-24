@@ -10,13 +10,13 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	movcamera(left,right)
 	pass
 
 
 func movcamera(left:bool, right:bool):
-	if left && $camera.position.x < 0:
+	if left && $camera.position.x > 0:
 		$camera.position.x -= 20
 	if right && $camera.position.x < 283:
 		$camera.position.x += 20
