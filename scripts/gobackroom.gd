@@ -8,7 +8,7 @@ func _on_mouse_entered():
 	if not GlobalData.active_goback:
 		GlobalData.active_goback = true
 		print("Changing scene...")
-		get_tree().change_scene_to_file("res://scenes/room.tscn")
+		get_tree().change_scene_to_file("res://scenes/room_back.tscn")
 
 func _on_mouse_exited():
 	print("Mouse exited, reset active_goback")
