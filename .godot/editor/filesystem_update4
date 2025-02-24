@@ -1,5 +1,1 @@
 res://scenes/room.tscn
-res://scenes/door.tscn
-res://scripts/door.gd
-res://scenes/window.tscn
-res://scripts/doorkeys.gd

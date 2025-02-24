@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://cl7drp8ltce6g"]
+
+[ext_resource type="Texture2D" uid="uid://c7kijj45denos" path="res://textures/room/closet.png" id="1_vjcm5"]
+[ext_resource type="Script" path="res://scripts/gobackroom.gd" id="2_ql3t8"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mva4n"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_vjcm5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j3f62"]
+size = Vector2(1164, 46)
+
+[node name="Closet" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(576, 324)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_mva4n")
+
+[node name="goback" type="Area2D" parent="."]
+script = ExtResource("2_ql3t8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="goback"]
+position = Vector2(577, 635)
+shape = SubResource("RectangleShape2D_j3f62")
+
+[connection signal="mouse_entered" from="goback" to="goback" method="_on_mouse_entered"]
