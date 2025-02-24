@@ -1,0 +1,165 @@
+[gd_scene load_steps=12 format=3 uid="uid://mqq1frwilrfq"]
+
+[ext_resource type="Texture2D" uid="uid://dqv7loffwfuir" path="res://textures/room/room_back.png" id="1_hlt4j"]
+[ext_resource type="Script" path="res://scripts/roompan.gd" id="1_n3hmp"]
+[ext_resource type="Script" path="res://scripts/closet.gd" id="3_1ld5x"]
+[ext_resource type="Script" path="res://scripts/goback.gd" id="3_um5vg"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_db6rg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_hlt4j")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Shader" id="Shader_36syv"]
+code = "shader_type canvas_item;
+
+/**
+ * In relative units now (0-1)
+ */
+uniform float zoom = 1.0;
+
+/**
+ * Higher values = less distortion in the center
+ */
+uniform float sharpness = 2.0;
+
+/**
+ * (1, 0) for horizontal only, (0, 1) for vertical only
+ */
+uniform vec2 direction = vec2(1.0, 0.0);
+
+/**
+ * 0: Repeats
+ * 1: Clamps
+ * 2: Clips
+ */
+uniform int wrapping_mode = 0;
+
+uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
+
+void fragment() {
+    float fB;
+    float fC;
+
+    vec2 posTex;
+    vec4 color = vec4(0.0, 0.0, 0.0, 1.0);
+    vec2 uv = SCREEN_UV;
+    vec2 ndir = normalize(direction);
+    float fac1 = abs(dot(uv - 0.5, normalize(ndir.yx))) * 2.0;
+    float fac2 = -dot(uv - 0.5, normalize(ndir)) * 2.0;
+    vec2 new_uv = uv + pow(fac1, sharpness) * fac2 * zoom * ndir;
+    switch (wrapping_mode)
+    {
+        case 2:
+            if (0.0 > new_uv.x || new_uv.x > 1.0 || 0.0 > new_uv.y || new_uv.y > 1.0)
+            {
+                COLOR = vec4(0);
+                break;
+            }
+        case 0:
+            new_uv = fract(new_uv);
+            // fall-through
+        case 1:
+            new_uv = clamp(new_uv, vec2(0), vec2(1));
+            COLOR = textureLod(SCREEN_TEXTURE, new_uv, 0.0);
+            break;
+    }
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g3fva"]
+shader = SubResource("Shader_36syv")
+shader_parameter/zoom = 0.15
+shader_parameter/sharpness = 2.0
+shader_parameter/direction = Vector2(0, 1)
+shader_parameter/wrapping_mode = 0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_clri8"]
+size = Vector2(478.944, 733.611)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_svo74"]
+size = Vector2(301.5, 629.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_totgq"]
+size = Vector2(267.5, 238)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_am3wi"]
+size = Vector2(1164, 46)
+
+[node name="RoomBack" type="Node2D"]
+script = ExtResource("1_n3hmp")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(730, 324)
+scale = Vector2(0.9125, 0.9)
+sprite_frames = SubResource("SpriteFrames_db6rg")
+
+[node name="camera" type="Node2D" parent="."]
+
+[node name="viewcamera" type="Camera2D" parent="camera"]
+position = Vector2(576, 324)
+
+[node name="perspective" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="perspective"]
+z_index = -1
+material = SubResource("ShaderMaterial_g3fva")
+offset_left = -6.0
+offset_top = -6.0
+offset_right = 1154.0
+offset_bottom = 648.0
+mouse_filter = 2
+
+[node name="detectors" type="Node2D" parent="."]
+visibility_layer = 2
+position = Vector2(720, 324)
+scale = Vector2(0.9, 0.9)
+
+[node name="left" type="Area2D" parent="detectors"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detectors/left"]
+z_index = 2
+position = Vector2(-558.361, -3.19446)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_clri8")
+
+[node name="right" type="Area2D" parent="detectors"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detectors/right"]
+z_index = 2
+position = Vector2(568.889, 1.11115)
+shape = SubResource("RectangleShape2D_clri8")
+
+[node name="doors" type="Node2D" parent="."]
+
+[node name="closet" type="Area2D" parent="doors"]
+script = ExtResource("3_1ld5x")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="doors/closet"]
+position = Vector2(255.25, 329.25)
+shape = SubResource("RectangleShape2D_svo74")
+
+[node name="computer" type="Area2D" parent="doors"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="doors/computer"]
+position = Vector2(1220, 336)
+shape = SubResource("RectangleShape2D_totgq")
+
+[node name="goback" type="Area2D" parent="."]
+script = ExtResource("3_um5vg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="goback"]
+position = Vector2(577, 635)
+shape = SubResource("RectangleShape2D_am3wi")
+
+[connection signal="mouse_entered" from="detectors/left" to="." method="_on_left_mouse_entered"]
+[connection signal="mouse_exited" from="detectors/left" to="." method="_on_left_mouse_exited"]
+[connection signal="mouse_entered" from="detectors/right" to="." method="_on_right_mouse_entered"]
+[connection signal="mouse_exited" from="detectors/right" to="." method="_on_right_mouse_exited"]
+[connection signal="input_event" from="doors/closet" to="doors/closet" method="_on_input_event"]
+[connection signal="mouse_exited" from="goback" to="goback" method="_on_mouse_exited"]

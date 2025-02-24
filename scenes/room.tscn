@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://s7rhruvx8sv3"]
+[gd_scene load_steps=15 format=3 uid="uid://s7rhruvx8sv3"]
 
 [ext_resource type="Texture2D" uid="uid://c35cq8hqu55br" path="res://textures/room/room.png" id="1_j50an"]
 [ext_resource type="Script" path="res://scripts/roompan.gd" id="1_jispr"]
 [ext_resource type="Script" path="res://scripts/window.gd" id="4_i6m8r"]
 [ext_resource type="Script" path="res://scripts/vent.gd" id="4_r41n4"]
 [ext_resource type="Script" path="res://scripts/door.gd" id="5_d4gel"]
+[ext_resource type="Script" path="res://scripts/gobackroom.gd" id="6_5rbme"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_g2wpc"]
 animations = [{
@@ -20,7 +21,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r1t21"]
 size = Vector2(469, 685)
 
-[sub_resource type="Shader" id="Shader_36syv"]
+[sub_resource type="Shader" id="Shader_q80pp"]
 code = "shader_type canvas_item;
 
 /**
@@ -77,7 +78,7 @@ void fragment() {
 }"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_n616l"]
-shader = SubResource("Shader_36syv")
+shader = SubResource("Shader_q80pp")
 shader_parameter/zoom = 0.15
 shader_parameter/sharpness = 2.0
 shader_parameter/direction = Vector2(0, 1)
@@ -91,6 +92,9 @@ size = Vector2(371, 272)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xfxs7"]
 size = Vector2(287, 443)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ygp4d"]
+size = Vector2(966, 50)
 
 [node name="Room" type="Node2D"]
 script = ExtResource("1_jispr")
@@ -157,6 +161,14 @@ script = ExtResource("5_d4gel")
 position = Vector2(1270.5, 423.5)
 shape = SubResource("RectangleShape2D_xfxs7")
 
+[node name="goback" type="Area2D" parent="."]
+script = ExtResource("6_5rbme")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="goback"]
+position = Vector2(676, 637)
+shape = SubResource("RectangleShape2D_ygp4d")
+metadata/_edit_lock_ = true
+
 [connection signal="mouse_entered" from="detectors/left" to="." method="_on_left_mouse_entered"]
 [connection signal="mouse_exited" from="detectors/left" to="." method="_on_left_mouse_exited"]
 [connection signal="mouse_entered" from="detectors/right" to="." method="_on_right_mouse_entered"]
@@ -164,3 +176,4 @@ shape = SubResource("RectangleShape2D_xfxs7")
 [connection signal="input_event" from="doors/vent" to="doors/vent" method="_on_input_event"]
 [connection signal="input_event" from="doors/window" to="doors/window" method="_on_input_event"]
 [connection signal="input_event" from="doors/door" to="doors/door" method="_on_input_event"]
+[connection signal="mouse_exited" from="goback" to="goback" method="_on_mouse_exited"]
