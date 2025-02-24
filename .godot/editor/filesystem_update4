@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 res://scenes/title.tscn
 res://scenes/extras.tscn
 res://scenes/warning.tscn
@@ -5,3 +6,6 @@ res://scenes/settings.tscn
 res://scenes/vent.tscn
 res://scenes/window.tscn
 res://scripts/ui.gd
+=======
+res://scenes/room.tscn
+>>>>>>> a4398edbd2d4d07b6656d74bd890ae6d23c7d3ca
