@@ -6,13 +6,14 @@ const SCENE_CONTINUE_GAME = "res://scenes/continue_game.tscn"
 const SCENE_SETTINGS = "res://scenes/settings.tscn"
 const SCENE_EXTRAS = "res://scenes/extras.tscn"
 
-@onready var play_button: Button = $play_button
-@onready var continue_game_button: Button = $continue_game_button
-@onready var settings_button: Button = $settings_button
-@onready var extras_button: Button = $extras_button
+@onready var play_button: Button = $play
+@onready var continue_game_button: Button = $continue_game
+@onready var settings_button: Button = $settings
+@onready var extras_button: Button = $extras
 
 
 func _ready():
+
 	play_button.pressed.connect(_on_play_pressed)
 	continue_game_button.pressed.connect(_on_continue_game_pressed)
 	settings_button.pressed.connect(_on_settings_pressed)

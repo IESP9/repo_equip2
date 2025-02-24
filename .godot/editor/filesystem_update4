@@ -3,3 +3,4 @@ res://scripts/enemy.gd
 res://scenes/extras.tscn
 res://scenes/settings.tscn
 res://scripts/ui.gd
+res://scenes/room.tscn

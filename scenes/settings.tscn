@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bd6jahg1t3gey"]
 
-[ext_resource type="Texture2D" path="res://sprites/opciones.png" id="1_vfmow"]
+[ext_resource type="Texture2D" uid="uid://dm7vfaqkrj287" path="res://sprites/opciones.png" id="1_vfmow"]
 
 [node name="settings" type="Node2D"]
 
