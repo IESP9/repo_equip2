@@ -1,5 +1,10 @@
 res://scenes/room.tscn
 res://scenes/door.tscn
-res://scripts/door.gd
 res://scenes/window.tscn
-res://scripts/doorkeys.gd
+res://scenes/room_back.tscn
+res://scripts/roompan.gd
+res://scripts/gobackroom.gd
+res://scripts/goback.gd
+res://scripts/closet.gd
+res://scenes/closet.tscn
+res://scripts/GlobalData.gd

@@ -1,6 +1,7 @@
+AnimatedSprite2D
+AnimationTree
 CollisionShape2D
 Area2D
-AnimatedSprite2D
 Sprite2D
 Node2D
 ColorRect
