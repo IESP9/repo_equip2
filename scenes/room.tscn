@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 [gd_scene load_steps=15 format=3 uid="uid://s7rhruvx8sv3"]
+=======
+[gd_scene load_steps=13 format=3 uid="uid://ofm6jhotl1r3"]
+>>>>>>> c762bbecaed90457bb0b3c99d66cff4268b566ce
 
 [ext_resource type="Texture2D" uid="uid://c35cq8hqu55br" path="res://textures/room/room.png" id="1_j50an"]
 [ext_resource type="Script" path="res://scripts/roompan.gd" id="1_jispr"]

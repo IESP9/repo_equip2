@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 AnimatedSprite2D
 AnimationTree
 CollisionShape2D
@@ -8,7 +9,12 @@ ColorRect
 CanvasLayer
 Node
 Camera2D
+=======
+TextureRect
+>>>>>>> c762bbecaed90457bb0b3c99d66cff4268b566ce
 Button
 Label
-TextureRect
+Control
+Sprite2D
 Camera2D
+CanvasLayer

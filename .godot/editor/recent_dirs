@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+=======
+<<<<<<< Updated upstream
+res://scripts
+>>>>>>> c762bbecaed90457bb0b3c99d66cff4268b566ce
 res://scenes
 res://scripts
 res://shaders
@@ -5,3 +10,7 @@ res://shaders
 =======
 res://sprites
 >>>>>>> 3c373bbc0e4dc7892e29bfbb72f310e161cca674
+=======
+res://scenes
+res://sprites
+>>>>>>> Stashed changes
