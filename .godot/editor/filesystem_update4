@@ -1,18 +1,7 @@
 res://scenes/title.tscn
-res://scripts/enemy.gd
 res://scenes/extras.tscn
+res://scenes/warning.tscn
 res://scenes/settings.tscn
-res://scripts/ui.gd
-res://scenes/room.tscn
-<<<<<<< HEAD
-res://scenes/door.tscn
+res://scenes/vent.tscn
 res://scenes/window.tscn
-res://scenes/room_back.tscn
-res://scripts/roompan.gd
-res://scripts/gobackroom.gd
-res://scripts/goback.gd
-res://scripts/closet.gd
-res://scenes/closet.tscn
-res://scripts/GlobalData.gd
-=======
->>>>>>> c762bbecaed90457bb0b3c99d66cff4268b566ce
+res://scripts/ui.gd
