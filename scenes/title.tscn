@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cxfgj5jvafwqa"]
+[gd_scene load_steps=4 format=3 uid="uid://cxfgj5jvafwqa"]
 
 [ext_resource type="Texture2D" uid="uid://8g3o112p2j58" path="res://sprites/fondo.png" id="1_vglcq"]
 [ext_resource type="Texture2D" uid="uid://d4fyaxdelob7e" path="res://sprites/sombra.png" id="2_8tyxd"]
+[ext_resource type="Script" path="res://scenes/ui.gd" id="3_evaq7"]
 
 [node name="main" type="Node2D"]
 
@@ -19,8 +20,10 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+script = ExtResource("3_evaq7")
 
 [node name="title" type="Label" parent="UI"]
+layout_mode = 0
 offset_left = -20.0
 offset_top = -161.0
 offset_right = 25.0
@@ -28,6 +31,7 @@ offset_bottom = -138.0
 text = "Titulo"
 
 [node name="continue" type="Button" parent="UI"]
+layout_mode = 0
 offset_left = -40.0
 offset_top = 15.0
 offset_right = 46.0
@@ -35,6 +39,7 @@ offset_bottom = 46.0
 text = "Continuar"
 
 [node name="settings" type="Button" parent="UI"]
+layout_mode = 0
 offset_left = -609.0
 offset_top = 200.0
 offset_right = -544.0
@@ -42,6 +47,7 @@ offset_bottom = 231.0
 text = "Ajustes"
 
 [node name="extra" type="Button" parent="UI"]
+layout_mode = 0
 offset_left = -601.0
 offset_top = 157.0
 offset_right = -544.0

@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://bd6jahg1t3gey"]
+
+[ext_resource type="Texture2D" path="res://sprites/opciones.png" id="1_vfmow"]
+
+[node name="settings" type="Node2D"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = -394.0
+offset_top = -192.0
+offset_right = 686.0
+offset_bottom = 888.0
+texture = ExtResource("1_vfmow")

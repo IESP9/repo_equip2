@@ -1,2 +1,5 @@
 res://scenes/title.tscn
-res://scripts/GameData.gd
+res://scripts/enemy.gd
+res://scenes/extras.tscn
+res://scenes/settings.tscn
+res://scripts/ui.gd
