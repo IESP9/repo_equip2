@@ -1,5 +1,9 @@
-res://scenes/room.tscn
+res://scenes/bed.tscn
+res://scenes/closet.tscn
 res://scenes/door.tscn
-res://scripts/door.gd
+res://scenes/room.tscn
+res://scenes/room_back.tscn
+res://scenes/title.tscn
+res://scenes/vent.tscn
+res://scenes/warning.tscn
 res://scenes/window.tscn
-res://scripts/doorkeys.gd

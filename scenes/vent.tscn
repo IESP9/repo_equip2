@@ -2,8 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://srjtmyyj8tjc" path="res://textures/room/vent.png" id="1_illoy"]
 [ext_resource type="Texture2D" uid="uid://bdlqrgwyt6st3" path="res://textures/room/ventlight.png" id="2_1xvw8"]
-[ext_resource type="Script" path="res://scripts/ventkeys.gd" id="2_04hac"]
-[ext_resource type="Script" path="res://scripts/goback.gd" id="2_vpnko"]
+[ext_resource type="Script" uid="uid://boy4wfawbe1by" path="res://scripts/ventkeys.gd" id="2_04hac"]
+[ext_resource type="Script" uid="uid://bktg8jdhvjti6" path="res://scripts/goback.gd" id="2_vpnko"]
 [ext_resource type="Texture2D" uid="uid://df3de7h60ckgi" path="res://textures/room/ventclose.png" id="3_p33sn"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qumfm"]

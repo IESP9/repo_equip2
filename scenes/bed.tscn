@@ -1,0 +1,84 @@
+[gd_scene load_steps=15 format=3 uid="uid://dc668k20q3jfg"]
+
+[ext_resource type="Texture2D" uid="uid://d1sck6ga0q8fi" path="res://textures/cassetteplayer/player.png" id="1_bwiup"]
+[ext_resource type="Texture2D" uid="uid://cilxstqyok5ut" path="res://textures/cassetteplayer/player_back.png" id="2_stfwk"]
+[ext_resource type="Texture2D" uid="uid://blksbimrn28w1" path="res://textures/cassetteplayer/player_back_light.png" id="3_udhid"]
+[ext_resource type="Texture2D" uid="uid://csx1kxhp2yx2y" path="res://textures/cassetteplayer/player_light.png" id="4_ytiwe"]
+[ext_resource type="Texture2D" uid="uid://dghpjq27476mu" path="res://textures/cassetteplayer/player_play.png" id="5_l6lcw"]
+[ext_resource type="Texture2D" uid="uid://b8b06dyj5hq3v" path="res://textures/cassetteplayer/player_play_light.png" id="6_4l8h6"]
+[ext_resource type="Script" uid="uid://biegm4w40y06f" path="res://scripts/cassetteplayer.gd" id="7_h0cs4"]
+[ext_resource type="Script" uid="uid://bsj2ojkfw68aw" path="res://scripts/player_play.gd" id="8_g78bb"]
+[ext_resource type="Script" uid="uid://tjo6solssieb" path="res://scripts/player_back.gd" id="9_synea"]
+[ext_resource type="Script" uid="uid://bktg8jdhvjti6" path="res://scripts/goback.gd" id="10_nyrcr"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_epy7k"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_bwiup")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ytiwe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_stfwk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_udhid")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_l6lcw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_4l8h6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_djoq4"]
+size = Vector2(60, 95)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_txm02"]
+size = Vector2(65, 91.25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8yahw"]
+size = Vector2(1174, 87)
+
+[node name="Bed" type="Node2D"]
+script = ExtResource("7_h0cs4")
+
+[node name="bed" type="AnimatedSprite2D" parent="."]
+position = Vector2(576, 324)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_epy7k")
+
+[node name="buttons" type="Node2D" parent="."]
+
+[node name="play" type="Area2D" parent="buttons"]
+script = ExtResource("8_g78bb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="buttons/play"]
+position = Vector2(877, 154.5)
+shape = SubResource("RectangleShape2D_djoq4")
+
+[node name="back" type="Area2D" parent="buttons"]
+script = ExtResource("9_synea")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="buttons/back"]
+position = Vector2(942, 154.625)
+shape = SubResource("RectangleShape2D_txm02")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="goback" type="Area2D" parent="."]
+script = ExtResource("10_nyrcr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="goback"]
+position = Vector2(577, 649)
+shape = SubResource("RectangleShape2D_8yahw")
+
+[connection signal="input_event" from="buttons/play" to="buttons/play" method="_on_input_event"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Timer" to="bed" method="_on_timer_timeout"]
