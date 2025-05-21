@@ -1,0 +1,39 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="DeepScaleBeta"
+run/main_scene="uid://cxfgj5jvafwqa"
+config/features=PackedStringArray("4.4", "Forward Plus")
+config/icon="res://icon.svg"
+
+[audio]
+
+buses/main_scene="uid://cxfgj5jvafwqa"
+
+[autoload]
+
+GlobalData="*res://scripts/GlobalData.gd"
+SnakeAi="*res://scripts/snake_ai.gd"
+CrocAi="*res://scripts/croc_ai.gd"
+KomodoAi="*res://scripts/komodo_ai.gd"
+IguanaAi="*res://scripts/iguana_ai.gd"
+GlobalGame="*res://scripts/global_game.gd"
+
+[display]
+
+window/size/mode=4
+window/size/resizable=false
+window/size/borderless=true
+window/size/window_width_override=1152
+window/size/window_height_override=648
+window/stretch/mode="canvas_items"
+window/stretch/aspect="keep_width"
