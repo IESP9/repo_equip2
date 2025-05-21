@@ -1,0 +1,193 @@
+[gd_scene load_steps=17 format=3 uid="uid://s7rhruvx8sv3"]
+
+[ext_resource type="Script" uid="uid://dl0bevhhjojc" path="res://scripts/roompan.gd" id="1_jispr"]
+[ext_resource type="Texture2D" uid="uid://6ivulgje5oeg" path="res://textures/room/ChatGPT Image 4 may 2025, 13_06_16.png" id="2_7dqbv"]
+[ext_resource type="FontFile" uid="uid://pyile728ks2v" path="res://fonts/digital-7.ttf" id="3_7dqbv"]
+[ext_resource type="Texture2D" uid="uid://ctov525se6b1l" path="res://textures/room/clock.png" id="3_qvc4m"]
+[ext_resource type="Script" uid="uid://0744ecmw2fo5" path="res://scripts/window.gd" id="4_i6m8r"]
+[ext_resource type="Script" uid="uid://c7riwnhysq0to" path="res://scripts/vent.gd" id="4_r41n4"]
+[ext_resource type="Script" uid="uid://8co3cipragdy" path="res://scripts/door.gd" id="5_d4gel"]
+[ext_resource type="Script" uid="uid://cbjapx5jhq8d7" path="res://scripts/gobackroom.gd" id="6_5rbme"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ybpoa"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_7dqbv")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r1t21"]
+size = Vector2(469, 685)
+
+[sub_resource type="Shader" id="Shader_q80pp"]
+code = "shader_type canvas_item;
+
+/**
+ * In relative units now (0-1)
+ */
+uniform float zoom = 1.0;
+
+/**
+ * Higher values = less distortion in the center
+ */
+uniform float sharpness = 2.0;
+
+/**
+ * (1, 0) for horizontal only, (0, 1) for vertical only
+ */
+uniform vec2 direction = vec2(1.0, 0.0);
+
+/**
+ * 0: Repeats
+ * 1: Clamps
+ * 2: Clips
+ */
+uniform int wrapping_mode = 0;
+
+uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
+
+void fragment() {
+    float fB;
+    float fC;
+
+    vec2 posTex;
+    vec4 color = vec4(0.0, 0.0, 0.0, 1.0);
+    vec2 uv = SCREEN_UV;
+    vec2 ndir = normalize(direction);
+    float fac1 = abs(dot(uv - 0.5, normalize(ndir.yx))) * 2.0;
+    float fac2 = -dot(uv - 0.5, normalize(ndir)) * 2.0;
+    vec2 new_uv = uv + pow(fac1, sharpness) * fac2 * zoom * ndir;
+    switch (wrapping_mode)
+    {
+        case 2:
+            if (0.0 > new_uv.x || new_uv.x > 1.0 || 0.0 > new_uv.y || new_uv.y > 1.0)
+            {
+                COLOR = vec4(0);
+                break;
+            }
+        case 0:
+            new_uv = fract(new_uv);
+            // fall-through
+        case 1:
+            new_uv = clamp(new_uv, vec2(0), vec2(1));
+            COLOR = textureLod(SCREEN_TEXTURE, new_uv, 0.0);
+            break;
+    }
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n616l"]
+shader = SubResource("Shader_q80pp")
+shader_parameter/zoom = 0.15
+shader_parameter/sharpness = 2.0
+shader_parameter/direction = Vector2(0, 1)
+shader_parameter/wrapping_mode = 0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qvc4m"]
+size = Vector2(113.609, 105.25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g6eun"]
+size = Vector2(297.25, 324)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xfxs7"]
+size = Vector2(287, 505.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ygp4d"]
+size = Vector2(482, 50)
+
+[node name="Room" type="Node2D"]
+script = ExtResource("1_jispr")
+
+[node name="room" type="AnimatedSprite2D" parent="."]
+position = Vector2(728.501, 333.859)
+scale = Vector2(1.42285, 0.652068)
+sprite_frames = SubResource("SpriteFrames_ybpoa")
+
+[node name="TimeLabel" type="Label" parent="room"]
+z_index = 2
+offset_left = -421.0
+offset_top = -368.0
+offset_right = -366.0
+offset_bottom = -326.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_7dqbv")
+theme_override_font_sizes/font_size = 30
+
+[node name="Sprite2D" type="Sprite2D" parent="room"]
+position = Vector2(-384.354, -351.741)
+scale = Vector2(0.0702764, 0.175403)
+texture = ExtResource("3_qvc4m")
+
+[node name="camera" type="Node2D" parent="."]
+
+[node name="viewcamera" type="Camera2D" parent="camera"]
+position = Vector2(576, 324)
+
+[node name="detectors" type="Node2D" parent="."]
+visibility_layer = 2
+
+[node name="left" type="Area2D" parent="detectors"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detectors/left"]
+z_index = 2
+position = Vector2(237, 314)
+shape = SubResource("RectangleShape2D_r1t21")
+
+[node name="right" type="Area2D" parent="detectors"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detectors/right"]
+z_index = 2
+position = Vector2(1223, 333)
+shape = SubResource("RectangleShape2D_r1t21")
+
+[node name="perspective" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="perspective"]
+z_index = -1
+material = SubResource("ShaderMaterial_n616l")
+offset_top = 1.0
+offset_right = 1176.0
+offset_bottom = 655.0
+mouse_filter = 2
+
+[node name="doors" type="Node2D" parent="."]
+
+[node name="vent" type="Area2D" parent="doors"]
+script = ExtResource("4_r41n4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="doors/vent"]
+position = Vector2(58, 83)
+shape = SubResource("RectangleShape2D_qvc4m")
+
+[node name="window" type="Area2D" parent="doors"]
+script = ExtResource("4_i6m8r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="doors/window"]
+position = Vector2(693.625, 232)
+shape = SubResource("RectangleShape2D_g6eun")
+
+[node name="door" type="Area2D" parent="doors"]
+script = ExtResource("5_d4gel")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="doors/door"]
+position = Vector2(1348, 397.75)
+shape = SubResource("RectangleShape2D_xfxs7")
+
+[node name="goback" type="Area2D" parent="."]
+script = ExtResource("6_5rbme")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="goback"]
+position = Vector2(734, 636)
+shape = SubResource("RectangleShape2D_ygp4d")
+
+[connection signal="mouse_entered" from="detectors/left" to="." method="_on_left_mouse_entered"]
+[connection signal="mouse_exited" from="detectors/left" to="." method="_on_left_mouse_exited"]
+[connection signal="mouse_entered" from="detectors/right" to="." method="_on_right_mouse_entered"]
+[connection signal="mouse_exited" from="detectors/right" to="." method="_on_right_mouse_exited"]
+[connection signal="input_event" from="doors/vent" to="doors/vent" method="_on_input_event"]
+[connection signal="input_event" from="doors/window" to="doors/window" method="_on_input_event"]
+[connection signal="input_event" from="doors/door" to="doors/door" method="_on_input_event"]
+[connection signal="mouse_exited" from="goback" to="goback" method="_on_mouse_exited"]

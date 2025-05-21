@@ -1,0 +1,69 @@
+[gd_scene load_steps=13 format=3 uid="uid://cf7b23kdj34tu"]
+
+[ext_resource type="Script" uid="uid://c1rvffxfslhv8" path="res://scripts/vent-set.gd" id="1_rlpy4"]
+[ext_resource type="Texture2D" uid="uid://bdlqrgwyt6st3" path="res://textures2/room/ventlight.png" id="2_1xvw8"]
+[ext_resource type="Script" uid="uid://08ihtmo4gng5" path="res://scripts/ventkeys.gd" id="2_04hac"]
+[ext_resource type="Texture2D" uid="uid://srjtmyyj8tjc" path="res://textures/room/vent.png" id="2_ph23s"]
+[ext_resource type="Script" uid="uid://dfgiyocvvrw1l" path="res://scripts/goback.gd" id="2_vpnko"]
+[ext_resource type="Texture2D" uid="uid://df3de7h60ckgi" path="res://textures2/room/ventclose.png" id="3_p33sn"]
+[ext_resource type="Texture2D" uid="uid://dhh6dab6ueimv" path="res://textures2/enemies/snake_1.png" id="6_mm7iw"]
+[ext_resource type="Texture2D" uid="uid://bv1gsnx6341uk" path="res://textures2/enemies/snake_2.png" id="7_2blka"]
+[ext_resource type="Script" uid="uid://g1v2d7vopdq" path="res://scripts/snake_stage.gd" id="8_4igxd"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qumfm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ph23s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_1xvw8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_p33sn")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j4lnp"]
+size = Vector2(1156.5, 27)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_51r65"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_mm7iw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_2blka")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Vent" type="Node2D"]
+script = ExtResource("1_rlpy4")
+
+[node name="vent" type="AnimatedSprite2D" parent="."]
+position = Vector2(576, 324)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_qumfm")
+script = ExtResource("2_04hac")
+
+[node name="goback" type="Area2D" parent="."]
+script = ExtResource("2_vpnko")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="goback"]
+position = Vector2(573.75, 635.5)
+shape = SubResource("RectangleShape2D_j4lnp")
+
+[node name="Snake" type="Node2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Snake"]
+position = Vector2(576, 324)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_51r65")
+script = ExtResource("8_4igxd")

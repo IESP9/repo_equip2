@@ -1,0 +1,109 @@
+[gd_scene load_steps=12 format=3 uid="uid://mqq1frwilrfq"]
+
+[ext_resource type="Script" uid="uid://dl0bevhhjojc" path="res://scripts/roompan.gd" id="1_n3hmp"]
+[ext_resource type="Texture2D" uid="uid://cas80dq1x4w0x" path="res://textures2/room/room_back.png.png" id="2_8rtn3"]
+[ext_resource type="Script" uid="uid://dcxva6h1idcea" path="res://scripts/closet.gd" id="3_1ld5x"]
+[ext_resource type="FontFile" uid="uid://pyile728ks2v" path="res://fonts/digital-7.ttf" id="3_3fpqw"]
+[ext_resource type="Script" uid="uid://dfgiyocvvrw1l" path="res://scripts/goback.gd" id="3_um5vg"]
+[ext_resource type="Texture2D" uid="uid://ctov525se6b1l" path="res://textures/room/clock.png" id="4_sj7f1"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_svc84"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_8rtn3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_clri8"]
+size = Vector2(478.944, 733.611)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_svo74"]
+size = Vector2(312, 611)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_totgq"]
+size = Vector2(146.75, 168)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_am3wi"]
+size = Vector2(1164, 46)
+
+[node name="RoomBack" type="Node2D"]
+script = ExtResource("1_n3hmp")
+
+[node name="room" type="AnimatedSprite2D" parent="."]
+position = Vector2(724, 329)
+scale = Vector2(0.950521, 0.65625)
+sprite_frames = SubResource("SpriteFrames_svc84")
+
+[node name="TimeLabel" type="Label" parent="room"]
+z_index = 2
+offset_left = 343.0
+offset_top = -361.0
+offset_right = 424.0
+offset_bottom = -258.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_3fpqw")
+theme_override_font_sizes/font_size = 30
+
+[node name="Sprite2D" type="Sprite2D" parent="room"]
+position = Vector2(382.948, -342.857)
+scale = Vector2(0.0706112, 0.125601)
+texture = ExtResource("4_sj7f1")
+
+[node name="camera" type="Node2D" parent="."]
+
+[node name="viewcamera" type="Camera2D" parent="camera"]
+position = Vector2(576, 324)
+
+[node name="perspective" type="CanvasLayer" parent="."]
+
+[node name="detectors" type="Node2D" parent="."]
+visibility_layer = 2
+position = Vector2(720, 324)
+scale = Vector2(0.9, 0.9)
+
+[node name="left" type="Area2D" parent="detectors"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detectors/left"]
+z_index = 2
+position = Vector2(-558.361, -3.19446)
+shape = SubResource("RectangleShape2D_clri8")
+
+[node name="right" type="Area2D" parent="detectors"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detectors/right"]
+z_index = 2
+position = Vector2(568.889, 1.11115)
+shape = SubResource("RectangleShape2D_clri8")
+
+[node name="doors" type="Node2D" parent="."]
+
+[node name="closet" type="Area2D" parent="doors"]
+script = ExtResource("3_1ld5x")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="doors/closet"]
+position = Vector2(192, 338.5)
+shape = SubResource("RectangleShape2D_svo74")
+
+[node name="computer" type="Area2D" parent="doors"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="doors/computer"]
+position = Vector2(973, 369)
+shape = SubResource("RectangleShape2D_totgq")
+
+[node name="goback" type="Area2D" parent="."]
+script = ExtResource("3_um5vg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="goback"]
+position = Vector2(577, 635)
+shape = SubResource("RectangleShape2D_am3wi")
+
+[connection signal="mouse_entered" from="detectors/left" to="." method="_on_left_mouse_entered"]
+[connection signal="mouse_exited" from="detectors/left" to="." method="_on_left_mouse_exited"]
+[connection signal="mouse_entered" from="detectors/right" to="." method="_on_right_mouse_entered"]
+[connection signal="mouse_exited" from="detectors/right" to="." method="_on_right_mouse_exited"]
+[connection signal="input_event" from="doors/closet" to="doors/closet" method="_on_input_event"]
+[connection signal="mouse_exited" from="goback" to="goback" method="_on_mouse_exited"]

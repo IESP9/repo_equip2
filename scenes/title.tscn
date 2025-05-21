@@ -1,0 +1,92 @@
+[gd_scene load_steps=9 format=3 uid="uid://cxfgj5jvafwqa"]
+
+[ext_resource type="Script" uid="uid://cupxle8yyipm4" path="res://scripts/title.gd" id="1_p6dhs"]
+[ext_resource type="Texture2D" uid="uid://d154jv2odo32u" path="res://textures2/menu_bg.png" id="2_p6dhs"]
+[ext_resource type="Script" uid="uid://dxg4ar7l843aa" path="res://scripts/play.gd" id="2_wosw1"]
+[ext_resource type="Script" uid="uid://dra3ca1qtm2f1" path="res://scripts/ayuda.gd" id="3_b3w7a"]
+[ext_resource type="Texture2D" uid="uid://bswi4nc7exg1t" path="res://textures/ayuda.png" id="3_pyl7j"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wosw1"]
+size = Vector2(264, 52)
+
+[sub_resource type="LabelSettings" id="LabelSettings_c8jrw"]
+resource_name = "main_font"
+font_size = 55
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_qvv83"]
+font_size = 55
+font_color = Color(0, 0, 0, 1)
+
+[node name="main" type="Node2D"]
+script = ExtResource("1_p6dhs")
+
+[node name="play" type="Area2D" parent="."]
+script = ExtResource("2_wosw1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="play"]
+z_index = 1
+position = Vector2(718, 593.5)
+shape = SubResource("RectangleShape2D_wosw1")
+
+[node name="background" type="CanvasLayer" parent="."]
+
+[node name="jugar" type="Label" parent="background"]
+anchors_preset = -1
+anchor_left = -0.00173611
+anchor_bottom = 0.0231481
+offset_left = 656.0
+offset_top = 556.0
+offset_right = 812.0
+offset_bottom = 632.0
+text = "Jugar"
+label_settings = SubResource("LabelSettings_c8jrw")
+metadata/_edit_use_anchors_ = true
+
+[node name="Opciones" type="Label" parent="background"]
+offset_left = 853.0
+offset_top = 554.0
+offset_right = 1231.0
+offset_bottom = 630.0
+text = "Ayuda"
+label_settings = SubResource("LabelSettings_qvv83")
+metadata/_edit_use_anchors_ = true
+
+[node name="help" type="Area2D" parent="."]
+script = ExtResource("3_b3w7a")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="help"]
+z_index = 1
+position = Vector2(979, 593)
+shape = SubResource("RectangleShape2D_wosw1")
+
+[node name="Ayuda" type="Node2D" parent="."]
+z_index = 6
+
+[node name="Sprite2D" type="Sprite2D" parent="Ayuda"]
+z_index = 3
+position = Vector2(575, 321.5)
+scale = Vector2(0.751302, 0.637695)
+texture = ExtResource("3_pyl7j")
+
+[node name="Opciones" type="Label" parent="Ayuda"]
+z_index = 3
+offset_left = 853.0
+offset_top = 554.0
+offset_right = 1231.0
+offset_bottom = 630.0
+text = "Salir"
+label_settings = SubResource("LabelSettings_qvv83")
+metadata/_edit_use_anchors_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(576, 358)
+scale = Vector2(0.75, 0.699219)
+texture = ExtResource("2_p6dhs")
+
+[connection signal="input_event" from="play" to="play" method="_on_input_event"]
+[connection signal="mouse_entered" from="play" to="play" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="play" to="play" method="_on_mouse_exited"]
+[connection signal="input_event" from="help" to="help" method="_on_input_event"]
+[connection signal="mouse_entered" from="help" to="help" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="help" to="help" method="_on_mouse_exited"]

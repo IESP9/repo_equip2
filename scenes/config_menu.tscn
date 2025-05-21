@@ -1,0 +1,226 @@
+[gd_scene load_steps=6 format=3 uid="uid://kji3x0epr14g"]
+
+[ext_resource type="Script" uid="uid://r8g48tefpoom" path="res://scripts/config_menu.gd" id="1_34uwu"]
+[ext_resource type="Texture2D" uid="uid://fcw3mnamm5v6" path="res://textures/profile/snakeprofile.png" id="2_e7gat"]
+[ext_resource type="Texture2D" uid="uid://jabop4aepf8w" path="res://textures/profile/crocprofile.png" id="3_aovxh"]
+[ext_resource type="Texture2D" uid="uid://dhe7mbayrto8y" path="res://textures/profile/komodoprofile.png" id="4_5hqkn"]
+[ext_resource type="Texture2D" uid="uid://d03oo0jw1sxif" path="res://textures/profile/iguanaprofile.png" id="5_h086u"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_34uwu")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Fondo" type="Panel" parent="CanvasLayer"]
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer"]
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 18.0
+offset_top = -321.0
+offset_right = -602.0
+offset_bottom = 308.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 2
+
+[node name="SnakeContainer" type="VBoxContainer" parent="CanvasLayer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/GridContainer/SnakeContainer"]
+layout_mode = 2
+texture = ExtResource("2_e7gat")
+expand_mode = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/GridContainer/SnakeContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="CanvasLayer/GridContainer/SnakeContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="CanvasLayer/GridContainer/SnakeContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+horizontal_alignment = 1
+
+[node name="Button2" type="Button" parent="CanvasLayer/GridContainer/SnakeContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CrocContainer" type="VBoxContainer" parent="CanvasLayer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/GridContainer/CrocContainer"]
+layout_mode = 2
+texture = ExtResource("3_aovxh")
+expand_mode = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/GridContainer/CrocContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="CanvasLayer/GridContainer/CrocContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="CanvasLayer/GridContainer/CrocContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+horizontal_alignment = 1
+
+[node name="Button2" type="Button" parent="CanvasLayer/GridContainer/CrocContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="KomodoContainer" type="VBoxContainer" parent="CanvasLayer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/GridContainer/KomodoContainer"]
+layout_mode = 2
+texture = ExtResource("4_5hqkn")
+expand_mode = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/GridContainer/KomodoContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="CanvasLayer/GridContainer/KomodoContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="CanvasLayer/GridContainer/KomodoContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+horizontal_alignment = 1
+
+[node name="Button2" type="Button" parent="CanvasLayer/GridContainer/KomodoContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="IguanaContainer" type="VBoxContainer" parent="CanvasLayer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/GridContainer/IguanaContainer"]
+layout_mode = 2
+texture = ExtResource("5_h086u")
+expand_mode = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/GridContainer/IguanaContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="CanvasLayer/GridContainer/IguanaContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="CanvasLayer/GridContainer/IguanaContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+horizontal_alignment = 1
+
+[node name="Button2" type="Button" parent="CanvasLayer/GridContainer/IguanaContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Play" type="Button" parent="CanvasLayer"]
+offset_left = 774.0
+offset_top = 551.0
+offset_right = 981.0
+offset_bottom = 592.0
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_left = 666.0
+offset_top = -4.0
+offset_right = 1049.0
+offset_bottom = 318.0
+theme_override_font_sizes/font_size = 85
+text = "Noche customizada"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Label2" type="Label" parent="CanvasLayer"]
+offset_left = 608.0
+offset_top = 218.0
+offset_right = 1124.0
+offset_bottom = 305.0
+text = "Elije nivel de IA (0 - 20)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label3" type="Label" parent="CanvasLayer"]
+offset_left = 616.0
+offset_top = 525.0
+offset_right = 1141.0
+offset_bottom = 612.0
+text = "Jugar"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label4" type="Label" parent="CanvasLayer"]
+offset_left = 232.0
+offset_top = 282.0
+offset_right = 300.0
+offset_bottom = 305.0
+text = "+"
+
+[node name="Label4" type="Label" parent="CanvasLayer/Label4"]
+offset_left = 1.0
+offset_top = 315.0
+offset_right = 69.0
+offset_bottom = 338.0
+text = "+"
+
+[node name="Label4" type="Label" parent="CanvasLayer/Label4/Label4"]
+offset_left = 270.0
+offset_right = 338.0
+offset_bottom = 23.0
+text = "+"
+
+[node name="Label5" type="Label" parent="CanvasLayer"]
+offset_left = 474.0
+offset_top = 282.0
+offset_right = 542.0
+offset_bottom = 305.0
+text = "+"
+horizontal_alignment = 1
+
+[node name="Label6" type="Label" parent="CanvasLayer"]
+offset_left = 54.0
+offset_top = 596.0
+offset_right = 122.0
+offset_bottom = 619.0
+text = "-"
+
+[node name="Label6" type="Label" parent="CanvasLayer/Label6"]
+offset_left = 2.0
+offset_top = -316.0
+offset_right = 70.0
+offset_bottom = -293.0
+text = "-"
+
+[node name="Label6" type="Label" parent="CanvasLayer/Label6/Label6"]
+offset_left = 271.0
+offset_right = 333.0
+offset_bottom = 23.0
+text = "-"
+
+[node name="Label6" type="Label" parent="CanvasLayer/Label6/Label6/Label6"]
+offset_left = -3.0
+offset_top = 317.0
+offset_right = 59.0
+offset_bottom = 340.0
+text = "-"

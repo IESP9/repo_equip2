@@ -1,0 +1,81 @@
+[gd_scene load_steps=7 format=3 uid="uid://cxfgj5jvafwqa"]
+
+[ext_resource type="Texture2D" uid="uid://8g3o112p2j58" path="res://textures/fondo.png" id="1_vglcq"]
+[ext_resource type="Script" uid="uid://dxg4ar7l843aa" path="res://scripts/play.gd" id="2_wosw1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wosw1"]
+size = Vector2(209, 83)
+
+[sub_resource type="LabelSettings" id="LabelSettings_c8jrw"]
+resource_name = "main_font"
+font_size = 55
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_eu8n4"]
+font_size = 70
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_qvv83"]
+font_size = 55
+font_color = Color(0, 0, 0, 1)
+
+[node name="main" type="Node2D"]
+
+[node name="play" type="Area2D" parent="."]
+script = ExtResource("2_wosw1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="play"]
+z_index = 1
+position = Vector2(674.5, 354.5)
+shape = SubResource("RectangleShape2D_wosw1")
+
+[node name="background" type="CanvasLayer" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="background"]
+offset_right = 1361.0
+offset_bottom = 727.0
+texture = ExtResource("1_vglcq")
+metadata/_edit_use_anchors_ = true
+
+[node name="jugar" type="Label" parent="background"]
+anchors_preset = -1
+anchor_left = -0.00173611
+anchor_bottom = 0.0231481
+offset_left = 609.0
+offset_top = 316.0
+offset_right = 765.0
+offset_bottom = 392.0
+text = "Jugar"
+label_settings = SubResource("LabelSettings_c8jrw")
+metadata/_edit_use_anchors_ = true
+
+[node name="Titulo" type="Label" parent="background"]
+offset_left = 581.0
+offset_top = 110.0
+offset_right = 774.0
+offset_bottom = 206.0
+text = "Titulo"
+label_settings = SubResource("LabelSettings_eu8n4")
+metadata/_edit_use_anchors_ = true
+
+[node name="Opciones" type="Label" parent="background"]
+offset_left = 51.0
+offset_top = 484.0
+offset_right = 429.0
+offset_bottom = 560.0
+text = "Opciones"
+label_settings = SubResource("LabelSettings_qvv83")
+metadata/_edit_use_anchors_ = true
+
+[node name="Extras" type="Label" parent="background"]
+offset_left = 39.0
+offset_top = 561.0
+offset_right = 417.0
+offset_bottom = 637.0
+text = "Extras"
+label_settings = SubResource("LabelSettings_qvv83")
+metadata/_edit_use_anchors_ = true
+
+[connection signal="input_event" from="play" to="play" method="_on_input_event"]
+[connection signal="mouse_entered" from="play" to="play" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="play" to="play" method="_on_mouse_exited"]

@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://ymtjb4c4tcaj"]
+
+[ext_resource type="Script" uid="uid://bmnx7pnkrn3lk" path="res://scripts/muerte.gd" id="1_beg0p"]
+[ext_resource type="Texture2D" uid="uid://daa55p6msitmj" path="res://textures/death.png" id="2_81ynp"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_beg0p")
+
+[node name="DeathLabel" type="Label" parent="."]
+z_index = 4
+offset_left = 167.0
+offset_top = 289.0
+offset_right = 944.0
+offset_bottom = 419.0
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(576, 246)
+scale = Vector2(1.125, 0.785156)
+texture = ExtResource("2_81ynp")
